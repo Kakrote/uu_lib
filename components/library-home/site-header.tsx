@@ -1,9 +1,15 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
 import { headerLogo, mainNavigation, colors } from "@/lib/data"
 import { pages as aboutPages } from "@/lib/about"
 
 export function SiteHeader() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false)
+
   return (
     <header className="bg-white shadow-sm">
       <div className="container mx-auto px-4 py-4">
@@ -18,6 +24,8 @@ export function SiteHeader() {
             />
            
           </div>
+          
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             {mainNavigation.map((item, index) => (
               item.hasDropdown ? (
@@ -55,7 +63,77 @@ export function SiteHeader() {
               )
             ))}
           </nav>
+
+          {/* Mobile Hamburger Menu */}
+          <button
+            className="md:hidden text-[#2A2A2F] p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
+            {mainNavigation.map((item, index) => (
+              item.hasDropdown ? (
+                <div key={index} className="mb-2">
+                  <button
+                    className="w-full text-left px-4 py-2 text-[#2A2A2F] hover:bg-[#F2F2F5] rounded-md flex items-center justify-between"
+                    onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                  >
+                    {item.label}
+                    <svg 
+                      className={`w-4 h-4 transition-transform ${aboutDropdownOpen ? 'rotate-180' : ''}`}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {item.label === "About Us" && aboutDropdownOpen && (
+                    <div className="pl-4 mt-2">
+                      {aboutPages.map((page, pageIndex) => (
+                        <Link
+                          key={pageIndex}
+                          href={page.href}
+                          className="block px-4 py-2 text-sm text-[#2A2A2F] hover:bg-[#F2F2F5] hover:text-[#3048cd] rounded-md"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {page.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={index}
+                  href={item.href}
+                  className={`block px-4 py-2 rounded-md ${
+                    item.active 
+                      ? "text-[#3048cd] font-semibold bg-[#F2F2F5]" 
+                      : "text-[#2A2A2F] hover:bg-[#F2F2F5] hover:text-[#3048cd]"
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )
+            ))}
+          </nav>
+        )}
       </div>
     </header>
   )
