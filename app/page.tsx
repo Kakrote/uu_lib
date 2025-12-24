@@ -7,13 +7,11 @@ import {
   KeyServicesSection,
   NewArrivalsSection,
   PopularResourcesSection,
-  SiteFooter,
-  SiteHeader,
   TestimonialsSection,
-  TopBar,
 } from "@/components/library-home"
 import Newarrivals from "@/components/library-home/new-arrivals"
 import StudentTestimonials from "@/components/library-home/student-testimonials"
+import { CommonLayout } from "@/components/common-layout"
 import { motion } from "framer-motion"
 
 const fadeInUp = {
@@ -25,9 +23,7 @@ const fadeInUp = {
 
 export default function LibraryHome() {
   return (
-    <div className="min-h-screen bg-[#ffffff]">
-      <TopBar />
-      <SiteHeader />
+    <CommonLayout>
       <HeroSection />
       <motion.div {...fadeInUp}>
         <CollectionStatsSection />
@@ -48,7 +44,6 @@ export default function LibraryHome() {
       <AnimatedSection>
         <StudentTestimonials />
       </AnimatedSection>
-      <SiteFooter />
-    </div>
+    </CommonLayout>
   )
 }

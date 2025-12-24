@@ -11,6 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { newArrivalsBooks } from "@/lib/data"
 
 type Book = {
   name: string
@@ -42,44 +43,7 @@ const Newarrivals = () => {
     return () => window.removeEventListener('resize', updateCardWidth)
   }, [])
 
-  const books: Book[] = [
-    {
-      name: "Think and Grow Rich-1",
-      img: "/images/tagr.webp",
-      description:
-        "A practical classic about mindset, habits, and goal-setting to help you build a clear plan for success.",
-    },
-    {
-      name: "Think and Grow Rich-2",
-      img: "/images/tagr.webp",
-      description:
-        "A practical classic about mindset, habits, and goal-setting to help you build a clear plan for success.",
-    },
-    {
-      name: "Think and Grow Rich-3",
-      img: "/images/tagr.webp",
-      description:
-        "A practical classic about mindset, habits, and goal-setting to help you build a clear plan for success.",
-    },
-    {
-      name: "Think and Grow Rich-4",
-      img: "/images/tagr.webp",
-      description:
-        "A practical classic about mindset, habits, and goal-setting to help you build a clear plan for success.",
-    },
-    {
-      name: "Think and Grow Rich-5",
-      img: "/images/tagr.webp",
-      description:
-        "A practical classic about mindset, habits, and goal-setting to help you build a clear plan for success.",
-    },
-    {
-      name: "Think and Grow Rich-6",
-      img: "/images/tagr.webp",
-      description:
-        "A practical classic about mindset, habits, and goal-setting to help you build a clear plan for success.",
-    },
-  ]
+  const books: Book[] = newArrivalsBooks
 
   const total = books.length
   // Keep the carousel in-frame by computing a reasonable radius.

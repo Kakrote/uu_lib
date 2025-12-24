@@ -3,24 +3,14 @@
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { motion } from "framer-motion"
-
-const resources = [
-  "ACM",
-  "Pressreader",
-  "ProQuest",
-  "National Collections",
-  "SCC Online",
-  "Star Journals",
-  "Scopus",
-  "Springer Nature",
-] as const
+import { popularResources, themeColors } from "@/lib/data"
 
 export function PopularResourcesSection() {
   // Duplicate resources for seamless infinite scroll
-  const duplicatedResources = [...resources, ...resources, ...resources]
+  const duplicatedResources = [...popularResources, ...popularResources, ...popularResources]
 
   return (
-    <section className="py-16 bg-[#F2F2F5] overflow-hidden">
+    <section className="py-16 overflow-hidden" style={{ backgroundColor: themeColors.popularResourcesBg }}>
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-extrabold text-center text-[#2A2A2F] mb-12">Popular Resources</h2>
 
@@ -28,7 +18,7 @@ export function PopularResourcesSection() {
           <motion.div
             className="flex gap-6"
             animate={{
-              x: [0, -((resources.length * 150) + (resources.length * 24))],
+              x: [0, -((popularResources.length * 150) + (popularResources.length * 24))],
             }}
             transition={{
               x: {

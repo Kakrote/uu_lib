@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { BookOpen, Clock, MapPin } from "lucide-react"
+import { heroMedia, libraryHours, libraryServices } from "@/lib/data"
 
 function getYouTubeId(input: string): string | null {
   try {
@@ -40,19 +41,13 @@ function getYouTubeEmbedSrc(id: string) {
 }
 
 export function HeroSection() {
-  // Set this to either:
-  // - a YouTube link (watch/youtu.be/embed/shorts)
-  // - a direct video file (e.g. /videos/library-hero.mp4)
-  const backgroundMediaUrl = "https://youtu.be/7PIji8OubXU?si=9UJ5KIAIfX8YfmYs"
-  const posterImageUrl = "/images/screencapture-library-bennett-edu-in-2025-12-19-11-43-48.png"
-
-  const youTubeId = getYouTubeId(backgroundMediaUrl)
+  const youTubeId = getYouTubeId(heroMedia.backgroundMediaUrl)
 
   return (
     <section
       className="relative py-24 bg-cover bg-center min-h-[calc(100vh-10rem)]"
       style={{
-        backgroundImage: `url(${posterImageUrl})`,
+        backgroundImage: `url(${heroMedia.posterImageUrl})`,
       }}
     >
       {/* Background media (keeps backgroundImage as fallback) */}
@@ -75,10 +70,10 @@ export function HeroSection() {
           muted
           playsInline
           preload="metadata"
-          poster={posterImageUrl}
+          poster={heroMedia.posterImageUrl}
           aria-hidden="true"
         >
-          <source src={backgroundMediaUrl} />
+          <source src={heroMedia.backgroundMediaUrl} />
         </video>
       )}
 
@@ -91,44 +86,27 @@ export function HeroSection() {
               <h3 className="text-xl font-bold text-[#fdfdfd]">Library Working Hours</h3>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-              <div className="flex items-start gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#fdfdff] mt-1.5"></div>
-                <div>
-                  <p className="font-semibold text-[#ffffff]">Regular Days (Monday–Sunday)</p>
-                  <p className="text-[#ffffff]">8:00 AM – 11:00 PM</p>
+              {libraryHours.map((hour, index) => (
+                <div key={index} className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full mt-1.5" style={{ backgroundColor: hour.color }}></div>
+                  <div>
+                    <p className="font-semibold text-[#ffffff]">{hour.title}</p>
+                    <p className="text-[#ffffff]">{hour.time}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#6BC533] mt-1.5"></div>
-                <div>
-                  <p className="font-semibold text-[#ffffff]">Extended Hours (During Exams)</p>
-                  <p className="text-[#ffffff]">8:00 AM – 4:00 AM</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#FFA200] mt-1.5"></div>
-                <div>
-                  <p className="font-semibold text-[#ffffff]">Holidays</p>
-                  <p className="text-[#ffffff]">9:00 AM – 5:00 PM</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#E32424] mt-1.5"></div>
-                <div>
-                  <p className="font-semibold text-[#ffffff]">Circulation Service</p>
-                  <p className="text-[#ffffff]">Available</p>
-                </div>
-              </div>
+              ))}
             </div>
             <div className="mt-4 flex items-center gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <BookOpen className="h-4 w-4 text-[#ffffff]" />
-                <span className="text-[#ffffff]">Book Issue/Renew: 8:00 AM – 11:00 PM</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-[#ffffff]" />
-                <span className="text-[#ffffff]">Book Return: 24/7 (Through RFID Book Drop Box)</span>
-              </div>
+              {libraryServices.map((service, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  {service.icon === "BookOpen" ? (
+                    <BookOpen className="h-4 w-4 text-[#ffffff]" />
+                  ) : (
+                    <MapPin className="h-4 w-4 text-[#ffffff]" />
+                  )}
+                  <span className="text-[#ffffff]">{service.text}</span>
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>

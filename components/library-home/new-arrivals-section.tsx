@@ -11,15 +11,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import Image from "next/image"
-
-const titles = [
-  "Thinking Through Graphic History",
-  "Transforming Typography",
-  "Turner's Apparitions",
-  "Stochastic Images",
-  "Advanced Design",
-  "Creative Coding",
-] as const
+import { LibraryImages } from "@/lib/about"
 
 export function NewArrivalsSection() {
   const [dialogOpen, setDialogOpen] = React.useState(false)
@@ -30,48 +22,48 @@ export function NewArrivalsSection() {
     setDialogOpen(true)
   }
 
-  const selectedTitle = selectedIndex !== null ? titles[selectedIndex] : null
+  const selectedImage = selectedIndex !== null ? LibraryImages[selectedIndex] : null
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-extrabold text-center text-[#2A2A2F] mb-12">New Arrivals</h2>
+    <section className="py-12 sm:py-12 md:py-16 bg-[#3366c5] ">
+        <h2 className="text-4xl md:text-6xl font-extrabold text-center text-[#ffffff] mb-8 ">Library Gallery</h2>
+      <div className=" px-4  overflow-hidden  ">
 
         <div
-          className={`mx-auto lib-orbit-container h-[360px] w-[360px] md:h-[520px] md:w-[520px] ${
+          className={`mx-auto lib-orbit-container h-[495px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[550px] md:w-[550px] lg:h-[820px] lg:w-[820px]  ${
             dialogOpen ? "lib-carousel-paused" : ""
           }`}
         >
-          <div className="lib-orbit-ring">
-            {titles.map((title, index) => {
-              const angle = (360 / titles.length) * index
+          <div className="lib-orbit-ring  ">
+            {LibraryImages.map((image, index) => {
+              const angle = (360 / LibraryImages.length) * index
               return (
                 <button
-                  key={title}
+                  key={index}
                   type="button"
                   onClick={() => handleOpen(index)}
                   className="lib-orbit-item rounded-lg focus:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   style={{
                     transform: `translate(-50%, -50%) rotateZ(${angle}deg) translateX(var(--orbit-radius))`,
                   }}
-                  aria-label={`Open details for ${title}`}
+                  aria-label={`Open details for ${image.label}`}
                 >
-                  <div className="lib-orbit-face relative">
-                    <div className="pointer-events-none absolute left-1/2 top-[calc(100%-0.25rem)] h-6 w-[70%] -translate-x-1/2 rounded-full bg-foreground/10 blur-md" />
-                    <Card className="relative w-[140px] md:w-[170px] overflow-hidden border-[#DDE5E9] shadow-lg">
+                  <div className="lib-orbit-face relative ">
+                    <div className="pointer-events-none absolute left-1/2 top-[calc(100%-0.25rem)] h-6 w-[80%] -translate-x-1/2 rounded-full bg-foreground/10 blur-md" />
+                    <Card className="relative w-[100px] sm:w-[120px] md:w-[150px] lg:w-[220px] xl:w-[250px] bg-transparent overflow-hidden  border-none shadow-lg">
                       <CardContent className="p-0">
-                        <div className="aspect-[3/4] bg-gradient-to-br from-[#3048cd] to-[#6BC533]">
+                        <div className="aspect-[3/4] bg-gradient-to-br from-[#3048cd] to-[#6BC533] ">
                           <Image
-                            src={`/placeholder.svg?height=300&width=200&query=${encodeURIComponent(title)}`}
-                            alt={title}
+                            src={image.img}
+                            alt={image.label}
                             width={200}
                             height={300}
                             className="w-full h-full object-cover"
                           />
                         </div>
-                        <div className="p-2 bg-white">
-                          <p className="text-xs font-semibold text-[#2A2A2F] line-clamp-2">{title}</p>
-                        </div>
+                        {/* <div className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 xl:p-4">
+                          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg uppercase font-semibold text-[#ffffff] line-clamp-2">{image.label}</p>
+                        </div> */}
                       </CardContent>
                     </Card>
                   </div>
@@ -83,21 +75,21 @@ export function NewArrivalsSection() {
       </div>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-[90vw] sm:max-w-[600px] md:max-w-[700px]">
           <DialogHeader>
-            <DialogTitle>{selectedTitle ?? "New Arrival"}</DialogTitle>
-            <DialogDescription>
-              {selectedTitle ? "Preview the new arrival." : "Select an item to preview."}
+            <DialogTitle className="text-lg sm:text-xl md:text-2xl">{selectedImage?.label ?? "New Arrival"}</DialogTitle>
+            <DialogDescription className="text-sm sm:text-base">
+              {selectedImage ? "Preview the new arrival." : "Select an item to preview."}
             </DialogDescription>
           </DialogHeader>
 
-          {selectedTitle && (
+          {selectedImage && (
             <div className="w-full">
               <div className="[perspective:1200px]">
                 <div className="aspect-[3/4] w-full overflow-hidden rounded-md bg-muted">
                   <Image
-                    src={`/placeholder.svg?height=900&width=600&query=${encodeURIComponent(selectedTitle)}`}
-                    alt={selectedTitle}
+                    src={selectedImage.img}
+                    alt={selectedImage.label}
                     width={600}
                     height={900}
                     className="w-full h-full object-cover"

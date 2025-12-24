@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { helpSection } from "@/lib/data"
 
 export function HelpSection() {
   return (
@@ -8,13 +9,20 @@ export function HelpSection() {
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
       </div>
       <div className="container mx-auto px-4 text-center relative z-10">
-        <h2 className="text-4xl font-extrabold mb-4">Need help? Our team is here for you.</h2>
+        <h2 className="text-4xl font-extrabold mb-4">{helpSection.title}</h2>
         <p className="text-xl mb-8 text-white/90">
-          Whether you need assistance with research, finding resources, or utilizing library services, we are ready to
-          help.
+          {helpSection.description}
         </p>
-        <Button size="lg" className="bg-[#E32424] hover:bg-[#c01f1f] text-white font-bold px-8 py-6 text-lg">
-          CONTACT US
+        <Button 
+          size="lg" 
+          className="text-white font-bold px-8 py-6 text-lg"
+          style={{ 
+            backgroundColor: helpSection.buttonColor,
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = helpSection.buttonHoverColor}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = helpSection.buttonColor}
+        >
+          {helpSection.buttonText}
         </Button>
       </div>
     </section>
