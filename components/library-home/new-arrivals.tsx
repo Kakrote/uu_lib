@@ -34,7 +34,7 @@ const Newarrivals = () => {
         setCardWidth(200)
       } else {
         // big screens
-        setCardWidth(350)
+        setCardWidth(250)
       }
     }
 

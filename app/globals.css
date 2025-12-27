@@ -268,7 +268,7 @@
 }
 
 .spin-carousel {
-  animation: spin-carousel 25s linear infinite;
+  animation: spin-carousel 60s linear infinite;
 }
 
 .spin-carousel-paused {
