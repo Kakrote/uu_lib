@@ -1,7 +1,14 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import { helpSection } from "@/lib/data"
+import { useRouter } from "next/navigation"
 
 export function HelpSection() {
+  const router=useRouter()
+
+  const onPress=()=>{
+    router.push("/about/ourTeam")
+  }
   return (
     <section className="py-20 bg-gradient-to-r from-[#3048cd] to-[#6BC533] text-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
@@ -21,6 +28,7 @@ export function HelpSection() {
           }}
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = helpSection.buttonHoverColor}
           onMouseLeave={(e) => e.currentTarget.style.backgroundColor = helpSection.buttonColor}
+          onClick={onPress}
         >
           {helpSection.buttonText}
         </Button>
