@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { BookOpen, Clock, MapPin } from "lucide-react"
 import { heroMedia, libraryHours, libraryServices } from "@/lib/data"
