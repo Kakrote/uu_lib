@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { BookOpen, Clock, MapPin } from "lucide-react"
 import { heroMedia, libraryHours, libraryServices } from "@/lib/data"
+import { useEffect, useRef } from "react"
 
 function getYouTubeId(input: string): string | null {
   try {
@@ -42,6 +43,16 @@ function getYouTubeEmbedSrc(id: string) {
 
 export function HeroSection() {
   const youTubeId = getYouTubeId(heroMedia.backgroundMediaUrl)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    // Attempt to play video on mount (needed for some browsers)
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Silently fail if autoplay is blocked
+      })
+    }
+  }, [])
 
   return (
     <section
@@ -54,16 +65,18 @@ export function HeroSection() {
       {youTubeId ? (
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <iframe
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-[177.78vh] h-[56.25vw]"
-            src={getYouTubeEmbedSrc(youTubeId)}
-            title="Hero background video"
-            frameBorder={0}
-            allow="autoplay; encrypted-media; picture-in-picture"
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
-        </div>
-      ) : (
-        <video
+          ref={videoRef}
+          className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster={heroMedia.posterImageUrl}
+          aria-hidden="true"
+        >
+          <source src={heroMedia.backgroundMediaUrl} type="video/mp4" />
+          Your browser does not support the video tag.
           className="absolute inset-0 h-full w-full object-cover pointer-events-none"
           autoPlay
           loop
@@ -73,7 +86,7 @@ export function HeroSection() {
           poster={heroMedia.posterImageUrl}
           aria-hidden="true"
         >
-          <source src={heroMedia.backgroundMediaUrl} />
+          <source src={heroMedia.backgroundMediaUrl} type="video/mp4" />
         </video>
       )}
 

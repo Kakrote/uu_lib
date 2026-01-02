@@ -26,8 +26,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# large media files
+# large media files (video files are gitignored - use CDN/external hosting instead)
 *.mp4
 *.mov
 *.avi
 *.mkv
+
+# Exception: Allow specific video file for deployment
+!public/video/lib.mp4
