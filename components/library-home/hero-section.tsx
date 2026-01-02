@@ -65,6 +65,16 @@ export function HeroSection() {
       {youTubeId ? (
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <iframe
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-[177.78vh] h-[56.25vw]"
+            src={getYouTubeEmbedSrc(youTubeId)}
+            title="Hero background video"
+            frameBorder={0}
+            allow="autoplay; encrypted-media; picture-in-picture"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        </div>
+      ) : (
+        <video
           ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover pointer-events-none"
           autoPlay
@@ -77,16 +87,6 @@ export function HeroSection() {
         >
           <source src={heroMedia.backgroundMediaUrl} type="video/mp4" />
           Your browser does not support the video tag.
-          className="absolute inset-0 h-full w-full object-cover pointer-events-none"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          poster={heroMedia.posterImageUrl}
-          aria-hidden="true"
-        >
-          <source src={heroMedia.backgroundMediaUrl} type="video/mp4" />
         </video>
       )}
 
