@@ -7,17 +7,20 @@ import { Building2, Users, Maximize2, LibraryBig } from 'lucide-react'
 const Infrastructure = () => {
     return (
         <CommonLayout>
+            <div className="min-h-screen bg-background">
+                {/* Hero Section */}
+                <div className="bg-primary text-primary-foreground py-16">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center">
+                            <Building2 className="w-16 h-16 mx-auto mb-4" />
+                            <h1 className="text-4xl md:text-5xl font-bold mb-4">Infrastructure</h1>
+                            <p className="text-xl opacity-90 max-w-2xl mx-auto">
+                                State-of-the-art facilities across multiple libraries serving our academic community
+                            </p>
+                        </div>
+                    </div>
+                </div>
             <main className="container mx-auto px-4 pb-16">
-                <header className='relative mt-10 p-16'>
-                    {/* <div className="inline-flex items-center justify-center p-3 bg-[#152eb9]/10 rounded-full mb-4 mx-auto block w-fit">
-                        <Building2 className="w-8 h-8 text-[#152eb9]" />
-                    </div> */}
-                    <h1 className='relative font-bold text-6xl text-[#152eb9] uppercase p-2 text-center'>Infrastructure</h1>
-                    <div className='h-2.5 w-64 mx-auto rounded-xl border bg-[#6d092a]' />
-                    <p className="text-center text-muted-foreground mt-6 text-lg max-w-2xl mx-auto">
-                        State-of-the-art facilities across multiple libraries serving our academic community
-                    </p>
-                </header>
                 
                 <div className="max-w-7xl mx-auto space-y-12">
                     {/* Summary Statistics */}
@@ -126,6 +129,7 @@ const Infrastructure = () => {
                     </Card>
                 </div>
             </main>
+            </div>
         </CommonLayout>
     )
 }

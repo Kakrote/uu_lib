@@ -1,19 +1,22 @@
 import { CommonLayout } from '@/components/common-layout'
 import { Vission } from '@/lib/about'
 import React from 'react'
+import { Target } from 'lucide-react'
 
 const VisionMission = () => {
     return (
         <CommonLayout>
-            <main className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50'>
+            <main className='min-h-screen bg-background'>
                 {/* Hero Section */}
-                <div className='relative overflow-hidden py-16 px-4'>
-                    <div className='absolute inset-0 bg-gradient-to-r from-[#201e9b]/5 to-[#6bc533]/5'></div>
-                    <div className='relative max-w-4xl mx-auto text-center'>
-                        <h1 className='text-5xl lg:text-6xl font-extrabold text-[#122696] mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000'>
-                            Vision & Mission
-                        </h1>
-                        <div className='h-1.5 w-32 bg-[#6bc533] mx-auto rounded-full'></div>
+                <div className="bg-primary text-primary-foreground py-16">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center">
+                            <Target className="w-16 h-16 mx-auto mb-4" />
+                            <h1 className="text-4xl md:text-5xl font-bold mb-4">Vision & Mission</h1>
+                            <p className="text-xl opacity-90 max-w-2xl mx-auto">
+                                Our commitment to excellence in academic resources and services
+                            </p>
+                        </div>
                     </div>
                 </div>
 

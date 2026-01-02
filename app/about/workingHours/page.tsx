@@ -9,19 +9,20 @@ import { Clock, Sun, Snowflake, Calendar, Info } from 'lucide-react'
 const WorkingHours = () => {
     return (
         <CommonLayout>
-            <div className="container mx-auto px-4 py-8 max-w-6xl">
-                {/* Header Section */}
-                <div className="text-center mb-12">
-                    <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-4">
-                        <Clock className="w-8 h-8 text-primary" />
+            <div className="min-h-screen bg-background">
+                {/* Hero Section */}
+                <div className="bg-primary text-primary-foreground py-16">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center">
+                            <Clock className="w-16 h-16 mx-auto mb-4" />
+                            <h1 className="text-4xl md:text-5xl font-bold mb-4">Working Hours</h1>
+                            <p className="text-xl opacity-90 max-w-2xl mx-auto">
+                                Your gateway to knowledge, open when you need it most
+                            </p>
+                        </div>
                     </div>
-                    <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                        Library Working Hours
-                    </h1>
-                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        Your gateway to knowledge, open when you need it most
-                    </p>
                 </div>
+            <div className="container mx-auto px-4 py-8 max-w-6xl">
 
                 {/* Timings Table Card */}
                 <Card className="mb-8 overflow-hidden">
@@ -111,6 +112,7 @@ const WorkingHours = () => {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </CommonLayout>
     )
