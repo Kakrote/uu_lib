@@ -7,7 +7,7 @@ import "./globals.css"
 const figtree = Figtree({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Bennett University Library - Your Gateway to Knowledge",
+  title: "Uttaranchal University Library",
   description:
     "Learning Resource Centre at Bennett University. Discover, Learn, Explore with our vast collection of books, e-resources, and research support.",
   generator: "v0.app",
