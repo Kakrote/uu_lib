@@ -1,9 +1,11 @@
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card"
-import { BookOpen, Clock, MapPin } from "lucide-react"
+import { BookOpen, Clock, MapPin, Sun, Snowflake } from "lucide-react"
 import { heroMedia, libraryHours, libraryServices } from "@/lib/data"
+import { working_Timing } from "@/lib/about"
 import { useEffect, useRef } from "react"
+import { Badge } from "@/components/ui/badge"
 
 function getYouTubeId(input: string): string | null {
   try {
@@ -93,8 +95,8 @@ export function HeroSection() {
       )}
 
       <div className="absolute inset-0 bg-black/40"></div>
-      <div className="container mx-auto px-4 relative z-10">
-        <Card className="max-w-4xl mx-auto mt-6 border-[#fcfcfc] bg-white/10 backdrop-blur">
+      <div className="container mx-auto px-4 relative  z-10">
+        {/* <Card className="max-w-4xl mx-auto mt-6 border-[#fcfcfc] bg-white/10 backdrop-blur absolute ">
           <CardContent className="p-6">
             <div className="flex items-center gap-2 mb-4">
               <Clock className="h-5 w-5 text-[#fdfafa]" />
@@ -122,6 +124,40 @@ export function HeroSection() {
                   <span className="text-[#ffffff]">{service.text}</span>
                 </div>
               ))}
+            </div>
+          </CardContent>
+        </Card> */}
+
+        
+        <Card className="max-w-4xl mx-auto mt-[500px] border-[#fcfcfc] bg-white/10 backdrop-blur">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <Clock className="h-5 w-5 text-[#fdfafa]" />
+              <h3 className="text-lg font-bold text-[#fdfdfd]">Working Hours</h3>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+              {working_Timing.timings.slice(0, 2).map((timing, index) => (
+                <div key={index} className="bg-white/5 p-2 rounded">
+                  <p className="font-semibold text-[#ffffff] text-xs mb-1">{timing[0]}</p>
+                  <div className="flex items-center gap-1 mb-1">
+                    <Sun className="w-3 h-3 text-orange-400" />
+                    <span className="text-[#ffffff] text-xs">{timing[1]}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Snowflake className="w-3 h-3 text-blue-300" />
+                    <span className="text-[#ffffff] text-xs">{timing[2]}</span>
+                  </div>
+                </div>
+              ))}
+              <div className="bg-white/5 p-2 rounded">
+                <p className="font-semibold text-[#ffffff] text-xs mb-1">Weekends</p>
+                <p className="text-[#ffffff] text-xs">{working_Timing.timings[3][1]}</p>
+              </div>
+              <div className="bg-white/5 p-2 rounded">
+                <p className="font-semibold text-[#ffffff] text-xs mb-1">24/7 Access</p>
+                <p className="text-[#ffffff] text-xs">Online Resources</p>
+              </div>
             </div>
           </CardContent>
         </Card>
