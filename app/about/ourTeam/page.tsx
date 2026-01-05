@@ -145,7 +145,7 @@ const OurTeam = () => {
               {teamMembers.map((member) => (
                 <Card
                   key={member.id}
-                  className="group overflow-hidden border shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                  className="group overflow-hidden border shadow-lg hover:shadow-2xl transition-all "
                 >
                   <CardContent className="p-0">
                     <div className="relative bg-muted overflow-hidden">
@@ -154,7 +154,7 @@ const OurTeam = () => {
                         alt={member.name}
                         width={400}
                         height={500}
-                        className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-auto object-cover "
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
